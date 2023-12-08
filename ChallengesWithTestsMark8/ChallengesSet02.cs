@@ -1,58 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ChallengesWithTestsMark8
 {
     public class ChallengesSet02
     {
-        public bool CharacterIsALetter(char c)
+        public bool CharacterIsALetter(char c) //When I did letters, it didn't pass but when I look at non-letters it does. Not sure why. 
         {
-            throw new NotImplementedException();
+            string nonLetters = "0123456789`~!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?\u2222";
+            foreach (char letter in nonLetters) 
+            {
+                if (c == letter) 
+                    {
+                    return false;
+                    }
+            }
+            return true;
         }
 
         public bool CountOfElementsIsEven(string[] vals)
         {
-            throw new NotImplementedException();
+            if (vals.Length%2 == 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool IsNumberEven(int number)
         {
-            throw new NotImplementedException();
+            if (number % 2 == 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool IsNumberOdd(int num)
         {
-            throw new NotImplementedException();
+            if (num % 2 == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         public double SumOfMinAndMax(IEnumerable<double> numbers)
         {
-            throw new NotImplementedException();
+            if (numbers == null||numbers.Count()==0)
+            {
+                return 0;
+            }
+            return numbers.Min() + numbers.Max();
         }
 
         public int GetLengthOfShortestString(string str1, string str2)
         {
-            throw new NotImplementedException();
+            if (str1.Length < str2.Length)
+            {
+                return str1.Length;
+            }
+            return str2.Length;
         }
 
         public int Sum(int[] numbers)
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            if (numbers == null) { return 0; }
+            foreach (int number in numbers) 
+            {
+                sum += number;
+            }
+            return sum;
         }
 
         public int SumEvens(int[] numbers)
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            if (numbers == null) { return 0; }
+            foreach (int number in numbers)
+            {
+                if (number % 2 == 0)
+                { sum += number; }
+            }
+            return sum;
         }
 
         public bool IsSumOdd(List<int> numbers)
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            if (numbers == null) { return false; }
+            foreach (int number in numbers)
+            {
+                 sum += number;
+            }
+            if (sum % 2 == 0)
+            { return false; }
+            return true;
         }
 
         public long CountOfPositiveOddsBelowNumber(long number)
         {
-            throw new NotImplementedException();
+            var OddsBelowSum = 0;
+            for (long i = number-1; i >= 0; i--)
+            {
+                if(i%2 !=0) { OddsBelowSum++; }
+            }
+            return OddsBelowSum;
         }
     }
 }
