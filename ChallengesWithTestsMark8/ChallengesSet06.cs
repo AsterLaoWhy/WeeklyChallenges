@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Collections.Immutable;
 namespace ChallengesWithTestsMark8
 {
     public class ChallengesSet06
@@ -47,22 +47,40 @@ namespace ChallengesWithTestsMark8
 
         public int MaxConsecutiveCount(int[] numbers)
         {
-            int size = numbers.Length;
-            int max_so_far = int.MinValue,
-                max_ending_here = 0;
-
-            for (int i = 0; i < size; i++)
+            int max = 0;
+            int currentCount = 1;
+            
+            for(int i = 0; i < numbers.Count() - 1; i++) 
             {
-                max_ending_here = max_ending_here + numbers[i];
-
-                if (max_so_far < max_ending_here)
-                    max_so_far = max_ending_here;
-
-                if (max_ending_here < 0)
-                    max_ending_here = 0;
+                if (numbers[i] == numbers[i + 1]) 
+                {
+                    currentCount++;  
+                }
+                else {
+                    if (currentCount > max) 
+                    {
+                        max = currentCount;
+                        currentCount = 1;
+                    }
+                    currentCount = 1;
+                    
+                }
+                
             }
-
-            return max_so_far;
+            if (currentCount > max) max = currentCount;
+            return max;
+        }
+            public double[] GetEveryNthElement(List<double> elements, int n) //DONE!
+        {
+            List<double> result = new List<double>();
+            if (elements == null) { return result.ToArray(); }
+            if (n <= 0) return result.ToArray();
+            if (n==1) { return elements.ToArray(); }
+            for (int i = n; i <= elements.Count; i+=n) 
+            {
+                result.Add(elements[i-1]);
+            }
+            return result.ToArray();    
         }
     }
 }
